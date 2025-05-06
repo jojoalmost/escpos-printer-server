@@ -118,27 +118,28 @@ app.post('/api/print', async (req, res) => {
                         .size(1, 1)
                         .text(content.header || 'Receipt')
                         .text('------------------------')
-                        .align('lt')
+                        .align('ct')
                         .style('normal')
+                        .text('\n')
                     ;
 
-                    // Print items
-                    if (content.items && Array.isArray(content.items)) {
-                        content.items.forEach(item => {
-                            printer.text(`${item.name} x${item.quantity} $${item.price.toFixed(2)}`);
-                        });
-                    }
 
-                    // Print custom text lines
-                    if (content.text && Array.isArray(content.text)) {
-                        content.text.forEach(line => {
-                            printer.text(line);
-                        });
+                    if (content.body) {
+                        if (content.body.header) {
+                            printer.text(content.body.header);
+                        }
+                        if (content.body.main) {
+                            printer.text(content.body.main);
+                        }
+                        if (content.body.footer) {
+                            printer.text(content.body.footer);
+                        }
                     }
 
                     // Print footer
                     if (content.footer) {
                         printer
+                            .text('\n')
                             .text('------------------------')
                             .align('ct')
                             .text(content.footer);
