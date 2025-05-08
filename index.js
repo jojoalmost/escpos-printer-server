@@ -35,7 +35,7 @@ const PORT = process.env.PORT || 3001;
 
 // Enable CORS for your Next.js application domain
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://your-nextjs-app.vercel.app'],
+    origin: ['http://localhost:3000', 'https://griya-bromo-app.vercel.app'],
     methods: ['GET', 'POST'],
     credentials: true
 }));
@@ -116,7 +116,7 @@ app.post('/api/print', async (req, res) => {
                         .align('ct')
                         .style('b')
                         .size(1, 1)
-                        .text(content.header || 'Receipt')
+                        .text(content.header || '')
                         .text('------------------------')
                         .align('ct')
                         .style('normal')
@@ -142,6 +142,7 @@ app.post('/api/print', async (req, res) => {
                             .text('\n')
                             .text('------------------------')
                             .align('ct')
+                            .font('b')
                             .text(content.footer);
                     }
 

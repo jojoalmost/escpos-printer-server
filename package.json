@@ -2,9 +2,10 @@
   "name": "escpos-printer-server",
   "version": "1.0.0",
   "description": "Local server for ESC/POS printer communication",
-  "main": "printer-server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node printer-server.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
